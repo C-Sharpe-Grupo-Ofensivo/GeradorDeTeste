@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Compartilhado\" />
+    <Folder Include="ModuloDisciplina\" />
+    <Folder Include="ModuloQuestao\" />
+    <Folder Include="ModuloSerie\" />
+    <Folder Include="ModuloTeste\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorDeTeste.Dominio\GeradorDeTestes.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>
