@@ -10,7 +10,7 @@
     <Folder Include="Compartilhado\" />
     <Folder Include="ModuloDisciplina\" />
     <Folder Include="ModuloQuestao\" />
-    <Folder Include="ModuloSerie\" />
+    <Folder Include="ModuloMateria\" />
     <Folder Include="ModuloTeste\" />
   </ItemGroup>
 

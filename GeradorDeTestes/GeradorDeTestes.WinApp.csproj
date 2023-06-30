@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Folder Include="ModuloTeste\" />
-    <Folder Include="ModuloSerie\" />
+    <Folder Include="ModuloMateria\" />
     <Folder Include="ModuloQuestao\" />
     <Folder Include="ModuloDisciplina\" />
   </ItemGroup>
