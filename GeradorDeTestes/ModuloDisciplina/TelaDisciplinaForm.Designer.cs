@@ -56,10 +56,13 @@
             // 
             // txtId
             // 
+            txtId.Enabled = false;
             txtId.Location = new Point(77, 41);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 2;
+            txtId.Text = "0";
             // 
             // txtNome
             // 
@@ -70,6 +73,8 @@
             // 
             // btnGravar
             // 
+            btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Location = new Point(319, 183);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(83, 53);
@@ -79,6 +84,8 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Location = new Point(435, 183);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(81, 53);
@@ -86,7 +93,7 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // TelaDisciplina
+            // TelaDisciplinaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -97,7 +104,10 @@
             Controls.Add(txtId);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "TelaDisciplina";
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MinimizeBox = false;
+            Name = "TelaDisciplinaForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "TelaDisciplina";
             ResumeLayout(false);
             PerformLayout();
