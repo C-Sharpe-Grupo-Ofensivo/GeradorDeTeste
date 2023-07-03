@@ -28,8 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            gridDisciplina = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridDisciplina).BeginInit();
+            SuspendLayout();
+            // 
+            // gridDisciplina
+            // 
+            gridDisciplina.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridDisciplina.Dock = DockStyle.Fill;
+            gridDisciplina.Location = new Point(0, 0);
+            gridDisciplina.Name = "gridDisciplina";
+            gridDisciplina.RowTemplate.Height = 25;
+            gridDisciplina.Size = new Size(150, 150);
+            gridDisciplina.TabIndex = 0;
+            // 
+            // TabelaDisciplinaControl
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(gridDisciplina);
+            Name = "TabelaDisciplinaControl";
+            ((System.ComponentModel.ISupportInitialize)gridDisciplina).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
