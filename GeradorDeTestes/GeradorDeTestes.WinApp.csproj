@@ -12,7 +12,6 @@
     <Folder Include="ModuloTeste\" />
     <Folder Include="ModuloMateria\" />
     <Folder Include="ModuloQuestao\" />
-    <Folder Include="ModuloDisciplina\" />
   </ItemGroup>
 
   <ItemGroup>

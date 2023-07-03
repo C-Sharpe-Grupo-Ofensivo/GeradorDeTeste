@@ -6,5 +6,7 @@ namespace GeradorDeTestes
         {
             InitializeComponent();
         }
+
+        public static object Instancia { get; internal set; }
     }
 }

@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloDisciplina\" />
     <Folder Include="ModuloQuestao\" />
     <Folder Include="ModuloMateria\" />
     <Folder Include="ModuloTeste\" />
