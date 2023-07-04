@@ -14,12 +14,15 @@ namespace GeradorDeTeste.Infra.Sql.ModuloDisciplina
 		protected override string sqlInserir =>
 			@"INSERT INTO [TBDISCIPLINA] 
 				(
+					
 					[NOME]
 					
 				)
 				VALUES 
 				(
+				
 					@NOME
+					
 				
 				);                 
 
@@ -28,7 +31,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloDisciplina
 		protected override string sqlEditar =>
 			@"UPDATE [TBDISCIPLINA] 
 				SET 
-					[NOME] = @NOME,
+					[NOME] = @NOME
 				
 				WHERE 
 					[ID] = @ID";
@@ -41,8 +44,8 @@ namespace GeradorDeTeste.Infra.Sql.ModuloDisciplina
 		protected override string sqlSelecionarTodos =>
 			@"SELECT 
 
-				[ID]        CLIENTE_ID 
-			   ,[NOME]      CLIENTE_NOME
+				[ID]        DISCIPLINA_ID 
+			   ,[NOME]      DISCIPLINA_NOME
 		
 
 			FROM 
@@ -51,8 +54,8 @@ namespace GeradorDeTeste.Infra.Sql.ModuloDisciplina
 		protected override string sqlSelecionarPorId =>
 			@"SELECT 
 
-				[ID]        CLIENTE_ID 
-			   ,[NOME]      CLIENTE_NOME
+				[ID]        DISCIPLINA_ID 
+			   ,[NOME]      DISCIPLINA_NOME
 			
 
 			FROM 

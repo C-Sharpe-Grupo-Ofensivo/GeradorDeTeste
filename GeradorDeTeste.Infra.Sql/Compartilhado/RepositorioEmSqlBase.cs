@@ -116,7 +116,7 @@ namespace GeradorDeTeste.Infra.Sql.Compartilhado
             return registro;
         }
 
-        public virtual List<TEntidade> SelecionarTodos()
+         public virtual List<TEntidade> SelecionarTodos()
         {
             //obter a conexão com o banco e abrir ela
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);

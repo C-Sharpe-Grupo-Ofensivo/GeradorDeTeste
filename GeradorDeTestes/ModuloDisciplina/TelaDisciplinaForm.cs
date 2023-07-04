@@ -26,7 +26,7 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
             string nome = txtNome.Text;
 
 
-            Disciplina disciplina = new Disciplina(nome);
+            Disciplina disciplina = new Disciplina(id, nome);
 
             if (id > 0)
                 disciplina.id = id;
