@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Dominio.ModuloDisciplina;
+using GeradorDeTestes.Dominio.ModuloMateria;
 using GeradorDeTestes.WinApp.ModuloDisciplina;
 using System;
 using System.Collections.Generic;
@@ -13,24 +14,24 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
         private TabelaMateriaControl tabelaMateria;
         private IRepositorioMateria repositorioMateria;
 
-        public ControladorMateria(IRepositorioMateria repositorioDisciplina)
+        public ControladorMateria(IRepositorioMateria repositorioMateria)
         {
-            this.repositorioDisciplina = repositorioDisciplina;
+            this.repositorioMateria = repositorioMateria;
         }
-        public override string ToolTipInserir { get { return "Inserir nova disciplina"; } }
+        public override string ToolTipInserir { get { return "Inserir nova materia"; } }
 
-        public override string ToolTipEditar { get { return "Editar disciplina existente"; } }
+        public override string ToolTipEditar { get { return "Editar materia existente"; } }
 
-        public override string ToolTipExcluir { get { return "Excluir disciplina existente"; } }
+        public override string ToolTipExcluir { get { return "Excluir materia existente"; } }
 
         public override void Editar()
         {
-            Disciplina Disciplina = ObterDisciplinaSelecionado();
+            Materia Materia = ObterMateriaSelecionado();
 
-            if (Disciplina == null)
+            if (Materia == null)
             {
-                MessageBox.Show($"Selecione um cliente primeiro!",
-                    "Edição de Clientes",
+                MessageBox.Show($"Selecione uma materia primeiro!",
+                    "Edição de materia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -40,70 +41,70 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 
         public override void Excluir()
         {
-            Disciplina disciplina = ObterDisciplinaSelecionado();
+            Materia materia = ObterMateriaSelecionado();
 
-            if (disciplina == null)
+            if (materia == null)
             {
-                MessageBox.Show($"Selecione uma disciplina primeiro!",
-                    "Exclusão de uma Disciplina",
+                MessageBox.Show($"Selecione uma materia primeiro!",
+                    "Exclusão de uma materia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o disciplina {disciplina.nome}?", "Exclusão de Disciplina",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a materia {materia.nome}?", "Exclusão da materia",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioDisciplina.Excluir(disciplina);
+                repositorioMateria.Excluir(materia);
             }
 
-            CarregarDisciplina();
+            CarregarMateria();
         }
 
         public override void Inserir()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm();
+            TelaMateriaForm telaMateria = new TelaMateriaForm();
 
-            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
+            DialogResult opcaoEscolhida = telaMateria.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Disciplina disciplina = telaDisciplina.ObterDisciplina();
+                Materia materia = telaMateria.ObterDisciplina();
 
-                repositorioDisciplina.Inserir(disciplina);
+                repositorioMateria.Inserir(materia);
             }
-            CarregarDisciplina();
+            CarregarMateria();
         }
-        private void CarregarDisciplina()
+        private void CarregarMateria()
         {
-            List<Disciplina> Disciplina = repositorioDisciplina.SelecionarTodos();
+            List<Materia> Materia = repositorioMateria.SelecionarTodos();
 
-            tabelaDisciplina.AtualizarRegistros(Disciplina);
+            tabelaMateria.AtualizarRegistros(Materia);
         }
 
         public override UserControl ObterListagem()
         {
-            if (tabelaDisciplina == null)
-                tabelaDisciplina = new TabelaDisciplinaControl();
+            if (tabelaMateria == null)
+                tabelaMateria = new TabelaMateriaControl();
 
-            CarregarDisciplina();
+            CarregarMateria();
 
-            return tabelaDisciplina;
+            return tabelaMateria;
         }
 
         public override string ObterTipoCadastro()
         {
-            return "Cadastro de Disciplina";
+            return "Cadastro de Materia";
         }
-        private Disciplina ObterDisciplinaSelecionado()
+        private Materia ObterMateriaSelecionado()
         {
-            int id = tabelaDisciplina.ObterIdSelecionado();
+            int id = tabelaMateria.ObterIdSelecionado();
 
-            return repositorioDisciplina.SelecionarPorId(id);
+            return repositorioMateria.SelecionarPorId(id);
         }
     }
 }
