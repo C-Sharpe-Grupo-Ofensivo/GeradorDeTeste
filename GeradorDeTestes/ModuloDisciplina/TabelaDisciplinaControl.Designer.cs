@@ -37,11 +37,11 @@
             gridDisciplinas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridDisciplinas.Dock = DockStyle.Fill;
             gridDisciplinas.Location = new Point(0, 0);
-<<<<<<< HEAD
+
             gridDisciplinas.Name = "gridDisciplina";
-=======
+
             gridDisciplinas.Name = "gridDisciplinas";
->>>>>>> Feature/CadastrarMateria
+ 
             gridDisciplinas.RowTemplate.Height = 25;
             gridDisciplinas.Size = new Size(150, 150);
             gridDisciplinas.TabIndex = 0;

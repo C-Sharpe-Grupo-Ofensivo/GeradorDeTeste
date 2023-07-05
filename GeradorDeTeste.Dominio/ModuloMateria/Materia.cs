@@ -9,13 +9,17 @@ namespace GeradorDeTestes.Dominio.ModuloMateria
 {
     public class Materia : EntidadeBase<Materia>
     {
+        public Disciplina disciplina { get; set; }
         public string nome { get; set; }
+
+
         
-        public Materia(int id, string nome) : this()
+        public Materia(int id, string nome, Disciplina disciplina) : this()
         {
+            
             this.id = id;
             this.nome = nome;
-
+            this.disciplina = disciplina;
         }
 
         public Materia(string nome)
@@ -26,6 +30,7 @@ namespace GeradorDeTestes.Dominio.ModuloMateria
         public Materia()
         {
         }
+
 
         public override void AtualizarInformacoes(Materia registroAtualizado)
         {
@@ -46,9 +51,9 @@ namespace GeradorDeTestes.Dominio.ModuloMateria
         }
         public override bool Equals(object? obj)
         {
-            return obj is Disciplina disciplina &&
-                   id == disciplina.id &&
-                   nome == disciplina.nome;
+            return obj is Materia materia &&
+                   id == materia.id &&
+                   nome == materia.nome;
 
         }
     }

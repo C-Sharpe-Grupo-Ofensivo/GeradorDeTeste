@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Dominio.ModuloMateria
 {
-    internal class StatusSerieEnum
+    public enum StatusSerieEnum
     {
+        Serie1,Serie2
     }
 }

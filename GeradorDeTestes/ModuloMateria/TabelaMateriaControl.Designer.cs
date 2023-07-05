@@ -41,7 +41,7 @@
             gridMateria.RowTemplate.Height = 25;
             gridMateria.Size = new Size(150, 150);
             gridMateria.TabIndex = 1;
-            gridMateria.CellContentClick += gridMateria_CellContentClick;
+            
             // 
             // TabelaMateriaControl
             // 

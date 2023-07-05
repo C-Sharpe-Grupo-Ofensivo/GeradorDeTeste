@@ -73,7 +73,7 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Materia materia = telaMateria.ObterDisciplina();
+                Materia materia = telaMateria.ObterMateria();
 
                 repositorioMateria.Inserir(materia);
             }
