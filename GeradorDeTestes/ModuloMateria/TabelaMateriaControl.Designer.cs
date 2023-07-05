@@ -1,6 +1,6 @@
-﻿namespace GeradorDeTestes.WinApp.ModuloDisciplina
+﻿namespace GeradorDeTestes.WinApp.ModuloMateria
 {
-    partial class TabelaDisciplinaControl
+    partial class TabelaMateriaControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gridDisciplinas = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)gridDisciplinas).BeginInit();
+            gridMateria = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridMateria).BeginInit();
             SuspendLayout();
             // 
-            // gridDisciplinas
+            // gridMateria
             // 
-            gridDisciplinas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridDisciplinas.Dock = DockStyle.Fill;
-            gridDisciplinas.Location = new Point(0, 0);
-<<<<<<< HEAD
-            gridDisciplinas.Name = "gridDisciplina";
-=======
-            gridDisciplinas.Name = "gridDisciplinas";
->>>>>>> Feature/CadastrarMateria
-            gridDisciplinas.RowTemplate.Height = 25;
-            gridDisciplinas.Size = new Size(150, 150);
-            gridDisciplinas.TabIndex = 0;
+            gridMateria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridMateria.Dock = DockStyle.Fill;
+            gridMateria.Location = new Point(0, 0);
+            gridMateria.Name = "gridMateria";
+            gridMateria.RowTemplate.Height = 25;
+            gridMateria.Size = new Size(150, 150);
+            gridMateria.TabIndex = 1;
+            gridMateria.CellContentClick += gridMateria_CellContentClick;
             // 
-            // TabelaDisciplinaControl
+            // TabelaMateriaControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(gridDisciplinas);
-            Name = "TabelaDisciplinaControl";
-            ((System.ComponentModel.ISupportInitialize)gridDisciplinas).EndInit();
+            Controls.Add(gridMateria);
+            Name = "TabelaMateriaControl";
+            ((System.ComponentModel.ISupportInitialize)gridMateria).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private DataGridView gridDisciplinas;
+
+        private DataGridView gridMateria;
     }
 }
