@@ -49,10 +49,12 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
             if (erros.Length > 0)
             {
-                //TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
 
                 DialogResult = DialogResult.None;
             }
         }
+
+
     }
 }
