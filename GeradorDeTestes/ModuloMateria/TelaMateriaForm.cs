@@ -14,18 +14,38 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 {
     public partial class TelaMateriaForm : Form
     {
-        public TelaMateriaForm()
+        public TelaMateriaForm(List<Disciplina>disciplinas)
         {
             InitializeComponent();
             this.ConfigurarDialog();
+            CarregarDisciplinas(disciplinas);
+        }
+        private void CarregarDisciplinas(List<Disciplina> disciplinas)
+        {
+            cbDisciplina.Items.Clear();
+            foreach (Disciplina d in disciplinas)
+            {
+                cbDisciplina.Items.Add(d);
+            }
+        }
+        public StatusSerieEnum ObterFiltroSerie()
+        {
+            if (rbdPrimeiraSerie.Checked == true)
+                return StatusSerieEnum.Serie1;
+
+            else if (rdbSegundaSerie.Checked == true)
+                return StatusSerieEnum.Serie2;
+
+            return StatusSerieEnum.Serie1;
         }
 
-        public Materia ObterDisciplina()
+        public Materia ObterMateria()
         {
             int id = Convert.ToInt32(txtId.Text);
 
             string nome = txtNome.Text;
 
+            Disciplina disciplina = (Disciplina)cbDisciplina.SelectedItem;
 
             Materia materia = new Materia(nome);
 
@@ -44,7 +64,7 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
         }
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            Materia Materia = ObterDisciplina();
+            Materia Materia = ObterMateria();
 
             string[] erros = Materia.Validar();
 
