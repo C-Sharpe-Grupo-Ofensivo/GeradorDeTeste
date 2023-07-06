@@ -36,10 +36,11 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
 
             string enunciado = txtEnunciado.Text;
             string resposta = chkAlternativa.CheckedItems.ToString();
+            Materia materia = cmbMateria.SelectedItem as Materia;
             List<Alternativa> alternativa = new List<Alternativa>();
             alternativa.AddRange(chkAlternativa.Items.Cast<Alternativa>());
 
-            Questao questao = new Questao(enunciado, resposta, alternativa);
+            Questao questao = new Questao(materia, resposta, enunciado, alternativa);
 
             if (id > 0)
                 questao.id = id;
@@ -53,7 +54,7 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
             chkAlternativa.Text = questao.resposta;
             txtEnunciado.Text = questao.enunciado;
 
-            foreach (Alternativa item in questao.alternativa)
+            foreach (Alternativa item in questao.alternativas)
             {
                 chkAlternativa.Items.Add(item);
             }

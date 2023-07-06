@@ -1,9 +1,4 @@
 ﻿using GeradorDeTestes.Dominio.ModuloMateria;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Dominio.ModuloQuestao
 {
@@ -12,21 +7,23 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
         public Materia materia {get; set;}
         public string resposta { get; set; }
         public string enunciado { get; set; }
-        public List<Alternativa> alternativa { get; set; }
+        public List<Alternativa> alternativas { get; set; }
         public string alternativaCorreta { get; set; }
-        public Questao(int id, string resposta, string enunciado, List<Alternativa> alternativa) : this()
+        public Questao(int id, Materia materia, string resposta, string enunciado) : this()
         {
             this.id = id;
+            this.materia = materia;
             this.resposta = resposta;
             this.enunciado = enunciado;
-            this.alternativa = alternativa;
+            this.alternativas = alternativas;
         }
 
-        public Questao(string resposta, string enunciado, List<Alternativa> alternativa)
+        public Questao(Materia materia, string resposta, string enunciado, List<Alternativa> alternativa)
         {
+            this.materia = materia;
             this.resposta = resposta;
             this.enunciado = enunciado;
-            this.alternativa = alternativa;
+            this.alternativas = alternativa;
         }
 
         public Questao()
@@ -37,7 +34,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
         {
             this.resposta = registroAtualizado.resposta;
             this.enunciado = registroAtualizado.enunciado;
-            this.alternativa = registroAtualizado.alternativa;
+            this.alternativas = registroAtualizado.alternativas;
 
         }
         public override string ToString()
@@ -54,7 +51,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
             if (string.IsNullOrEmpty(enunciado))
                 erros.Add("O campo 'Enunciado' é obrigatório");
 
-            if (string.IsNullOrEmpty(alternativa.ToString()))
+            if (string.IsNullOrEmpty(alternativas.ToString()))
                 erros.Add("O campo 'Alterantiva' é obrigatório");
             return erros.ToArray();
         }
@@ -64,7 +61,20 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
                    id == questao.id &&
                    resposta == questao.resposta &&
                    enunciado == questao.enunciado &&
-                   alternativa == questao.alternativa;
+                   alternativas == questao.alternativas;
+        }
+        public void AdicionarAlternativa(Alternativa alternativa)
+        {
+            if (alternativas.Contains(alternativa) == false)
+                alternativas.Add(alternativa);
+        }
+        public void RemoverAlternativa(Alternativa alternativa)
+        {
+            alternativas.Remove(alternativa);
+        }
+        public bool Contem(Alternativa alternativa)
+        {
+            return alternativas.Contains(alternativa);
         }
     }
 }
