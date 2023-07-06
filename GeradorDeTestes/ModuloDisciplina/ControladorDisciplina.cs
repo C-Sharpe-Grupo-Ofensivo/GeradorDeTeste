@@ -26,17 +26,36 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
         public override void Editar()
         {
-            Disciplina Disciplina = ObterDisciplinaSelecionado();
+           Disciplina disciplina = ObterDisciplinaSelecionado();
 
-            if (Disciplina == null)
+            if (disciplina == null)
             {
-                MessageBox.Show($"Selecione uma disciplina primeiro!",
+                MessageBox.Show($"Nenhuma disciplina selecionada!",
                     "Edição de disciplina",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
+
+            TelaDisciplinaForm tela = new TelaDisciplinaForm(repositorioDisciplina.SelecionarTodos());
+            tela.ConfigurarTela(disciplina);
+
+            DialogResult opcaoEscolhida = tela.ShowDialog();
+
+            while (opcaoEscolhida == DialogResult.OK)
+            {
+                Disciplina disciplinaAtualizada = tela.ObterDisciplina();
+                if (ValidarAtributos(disciplinaAtualizada))
+                {
+                    opcaoEscolhida = tela.ShowDialog();
+                    continue;
+                }
+                repositorioDisciplina.Editar(disciplinaAtualizada.id, disciplinaAtualizada);
+                break;
+            }
+
+            CarregarDisciplina();
         }
 
         public override void Excluir()
