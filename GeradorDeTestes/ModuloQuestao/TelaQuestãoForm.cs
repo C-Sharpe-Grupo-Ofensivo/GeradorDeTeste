@@ -1,5 +1,6 @@
 ﻿using GeradorDeTestes.Dominio.ModuloDisciplina;
 using GeradorDeTestes.Dominio.ModuloQuestao;
+using GeradorDeTestes.Dominio.ModuloMateria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,33 +15,47 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
 {
     public partial class TelaQuestãoForm : Form
     {
-        public TelaQuestãoForm()
+        private List<Questao> questoes;
+        public TelaQuestãoForm(Questao questao)
         {
             InitializeComponent();
             this.ConfigurarDialog();
+            ConfigurarTela(questao);
+        }
+        public void ObterMateria(List<Materia> materia)
+        {
+            foreach (Materia item in materia)
+            {
+                
+            }
         }
         public Questao ObterQuestao()
         {
-            //int id = Convert.ToInt32(txtId.Text);
+            int id = Convert.ToInt32(txtId.Text);
 
             string enunciado = txtEnunciado.Text;
-            string resposta = txtResposta.Text;
-            string alternativa = "x";
+            string resposta = chkAlternativa.CheckedItems.ToString();
+            List<Alternativa> alternativa = new List<Alternativa>();
+            alternativa.AddRange(chkAlternativa.Items.Cast<Alternativa>());
 
-            Questao questao = new Questao(resposta, enunciado, alternativa);
+            Questao questao = new Questao(enunciado, resposta, alternativa);
 
-            //if (id > 0)
-            //    disciplina.id = id;
+            if (id > 0)
+                questao.id = id;
 
             return questao;
         }
         public void ConfigurarTela(Questao questao)
         {
-            //txtId.Text = questao.id.ToString();
+            txtId.Text = questao.id.ToString();
 
-            txtResposta.Text = questao.resposta;
-            txtEnunciado.Text = questao.resposta;
+            chkAlternativa.Text = questao.resposta;
+            txtEnunciado.Text = questao.enunciado;
 
+            foreach (Alternativa item in questao.alternativa)
+            {
+                chkAlternativa.Items.Add(item);
+            }
 
         }
         private void btnGravar_Click(object sender, EventArgs e, Questao questao)
@@ -56,6 +71,17 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
                 DialogResult = DialogResult.None;
             }
 
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            Alternativa alternativa = new Alternativa();
+
+            alternativa.alternativa = txtResposta.Text;
+
+            chkAlternativa.Items.Add(alternativa);
+
+            txtResposta.Text = "";
         }
     }
 }

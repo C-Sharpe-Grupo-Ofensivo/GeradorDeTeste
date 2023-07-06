@@ -32,15 +32,17 @@
             label2 = new Label();
             label3 = new Label();
             panel1 = new Panel();
-            checkedListBox1 = new CheckedListBox();
-            button2 = new Button();
+            chkAlternativa = new CheckedListBox();
+            btnRemover = new Button();
             label4 = new Label();
             comboBox1 = new ComboBox();
             txtEnunciado = new TextBox();
             txtResposta = new TextBox();
-            button1 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnAdicionar = new Button();
+            btnGravar = new Button();
+            btnCancelar = new Button();
+            label5 = new Label();
+            txtId = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,7 +50,7 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Location = new Point(14, 18);
+            label1.Location = new Point(90, 15);
             label1.Name = "label1";
             label1.Size = new Size(50, 15);
             label1.TabIndex = 0;
@@ -58,7 +60,7 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Location = new Point(14, 51);
+            label2.Location = new Point(7, 62);
             label2.Name = "label2";
             label2.Size = new Size(69, 15);
             label2.TabIndex = 1;
@@ -68,7 +70,7 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Location = new Point(14, 122);
+            label3.Location = new Point(9, 135);
             label3.Name = "label3";
             label3.Size = new Size(57, 15);
             label3.TabIndex = 2;
@@ -77,31 +79,31 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
-            panel1.Controls.Add(checkedListBox1);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(chkAlternativa);
+            panel1.Controls.Add(btnRemover);
             panel1.Controls.Add(label4);
-            panel1.Location = new Point(14, 148);
+            panel1.Location = new Point(9, 178);
             panel1.Name = "panel1";
-            panel1.Size = new Size(385, 231);
+            panel1.Size = new Size(395, 226);
             panel1.TabIndex = 3;
             // 
-            // checkedListBox1
+            // chkAlternativa
             // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(0, 32);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(385, 202);
-            checkedListBox1.TabIndex = 6;
+            chkAlternativa.FormattingEnabled = true;
+            chkAlternativa.Location = new Point(0, 41);
+            chkAlternativa.Name = "chkAlternativa";
+            chkAlternativa.Size = new Size(395, 184);
+            chkAlternativa.TabIndex = 6;
             // 
-            // button2
+            // btnRemover
             // 
-            button2.Anchor = AnchorStyles.None;
-            button2.Location = new Point(297, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(88, 26);
-            button2.TabIndex = 5;
-            button2.Text = "Remover";
-            button2.UseVisualStyleBackColor = true;
+            btnRemover.Anchor = AnchorStyles.None;
+            btnRemover.Location = new Point(307, 0);
+            btnRemover.Name = "btnRemover";
+            btnRemover.Size = new Size(88, 26);
+            btnRemover.TabIndex = 5;
+            btnRemover.Text = "Remover";
+            btnRemover.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -116,68 +118,88 @@
             // 
             comboBox1.Anchor = AnchorStyles.None;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(82, 15);
+            comboBox1.Location = new Point(139, 12);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(224, 23);
+            comboBox1.Size = new Size(265, 23);
             comboBox1.TabIndex = 4;
             // 
             // txtEnunciado
             // 
             txtEnunciado.Anchor = AnchorStyles.None;
-            txtEnunciado.Location = new Point(82, 51);
+            txtEnunciado.Location = new Point(82, 62);
             txtEnunciado.Multiline = true;
             txtEnunciado.Name = "txtEnunciado";
-            txtEnunciado.Size = new Size(317, 59);
+            txtEnunciado.Size = new Size(322, 54);
             txtEnunciado.TabIndex = 5;
             // 
             // txtResposta
             // 
             txtResposta.Anchor = AnchorStyles.None;
-            txtResposta.Location = new Point(82, 119);
+            txtResposta.Location = new Point(82, 135);
             txtResposta.Name = "txtResposta";
-            txtResposta.Size = new Size(224, 23);
+            txtResposta.Size = new Size(229, 23);
             txtResposta.TabIndex = 6;
             // 
-            // button1
+            // btnAdicionar
             // 
-            button1.Anchor = AnchorStyles.None;
-            button1.Location = new Point(311, 118);
-            button1.Name = "button1";
-            button1.Size = new Size(88, 24);
-            button1.TabIndex = 7;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
+            btnAdicionar.Anchor = AnchorStyles.None;
+            btnAdicionar.Location = new Point(311, 134);
+            btnAdicionar.Name = "btnAdicionar";
+            btnAdicionar.Size = new Size(93, 24);
+            btnAdicionar.TabIndex = 7;
+            btnAdicionar.Text = "Adicionar";
+            btnAdicionar.UseVisualStyleBackColor = true;
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
-            // button3
+            // btnGravar
             // 
-            button3.Anchor = AnchorStyles.None;
-            button3.DialogResult = DialogResult.OK;
-            button3.Location = new Point(227, 397);
-            button3.Name = "button3";
-            button3.Size = new Size(83, 38);
-            button3.TabIndex = 8;
-            button3.Text = "Gravar";
-            button3.UseVisualStyleBackColor = true;
+            btnGravar.Anchor = AnchorStyles.None;
+            btnGravar.DialogResult = DialogResult.OK;
+            btnGravar.Location = new Point(227, 410);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(88, 33);
+            btnGravar.TabIndex = 8;
+            btnGravar.Text = "Gravar";
+            btnGravar.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnCancelar
             // 
-            button4.Anchor = AnchorStyles.None;
-            button4.DialogResult = DialogResult.Cancel;
-            button4.Location = new Point(316, 397);
-            button4.Name = "button4";
-            button4.Size = new Size(83, 38);
-            button4.TabIndex = 9;
-            button4.Text = "Cancelar";
-            button4.UseVisualStyleBackColor = true;
+            btnCancelar.Anchor = AnchorStyles.None;
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(316, 410);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(88, 33);
+            btnCancelar.TabIndex = 9;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(2, 15);
+            label5.Name = "label5";
+            label5.Size = new Size(21, 15);
+            label5.TabIndex = 10;
+            label5.Text = "ID:";
+            // 
+            // txtId
+            // 
+            txtId.Location = new Point(29, 12);
+            txtId.Name = "txtId";
+            txtId.ReadOnly = true;
+            txtId.Size = new Size(55, 23);
+            txtId.TabIndex = 11;
             // 
             // TelaQuestãoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(419, 454);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button1);
+            ClientSize = new Size(413, 455);
+            Controls.Add(txtId);
+            Controls.Add(label5);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGravar);
+            Controls.Add(btnAdicionar);
             Controls.Add(txtResposta);
             Controls.Add(txtEnunciado);
             Controls.Add(comboBox1);
@@ -207,10 +229,12 @@
         private ComboBox comboBox1;
         private TextBox txtEnunciado;
         private TextBox txtResposta;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private CheckedListBox checkedListBox1;
+        private Button btnAdicionar;
+        private Button btnRemover;
+        private Button btnGravar;
+        private Button btnCancelar;
+        private CheckedListBox chkAlternativa;
+        private Label label5;
+        private TextBox txtId;
     }
 }

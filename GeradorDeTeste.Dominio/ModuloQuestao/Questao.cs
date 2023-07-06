@@ -11,8 +11,9 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
         //public Materia materia {get; set;}
         public string resposta { get; set; }
         public string enunciado { get; set; }
-        public string alternativa { get; set; }
-        public Questao(int id, string resposta, string enunciado, string alternativa) : this()
+        public List<Alternativa> alternativa { get; set; }
+        public string alternativaCorreta { get; set; }
+        public Questao(int id, string resposta, string enunciado, List<Alternativa> alternativa) : this()
         {
             this.id = id;
             this.resposta = resposta;
@@ -20,7 +21,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
             this.alternativa = alternativa;
         }
 
-        public Questao(string resposta, string enunciado, string alternativa)
+        public Questao(string resposta, string enunciado, List<Alternativa> alternativa)
         {
             this.resposta = resposta;
             this.enunciado = enunciado;
@@ -36,6 +37,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
             this.resposta = registroAtualizado.resposta;
             this.enunciado = registroAtualizado.enunciado;
             this.alternativa = registroAtualizado.alternativa;
+
         }
         public override string ToString()
         {
@@ -51,7 +53,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
             if (string.IsNullOrEmpty(enunciado))
                 erros.Add("O campo 'Enunciado' é obrigatório");
 
-            if (string.IsNullOrEmpty(alternativa))
+            if (string.IsNullOrEmpty(alternativa.ToString()))
                 erros.Add("O campo 'Alterantiva' é obrigatório");
             return erros.ToArray();
         }
