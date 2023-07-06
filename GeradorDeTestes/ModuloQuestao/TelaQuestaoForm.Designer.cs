@@ -1,6 +1,6 @@
 ﻿namespace GeradorDeTestes.WinApp.ModuloQuestao
 {
-    partial class TelaQuestãoForm
+    partial class TelaQuestaoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             chkAlternativa = new CheckedListBox();
             btnRemover = new Button();
             label4 = new Label();
-            comboBox1 = new ComboBox();
+            cmbMateria = new ComboBox();
             txtEnunciado = new TextBox();
             txtResposta = new TextBox();
             btnAdicionar = new Button();
@@ -104,6 +104,7 @@
             btnRemover.TabIndex = 5;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
             // 
             // label4
             // 
@@ -114,14 +115,14 @@
             label4.TabIndex = 4;
             label4.Text = "Alternativas:";
             // 
-            // comboBox1
+            // cmbMateria
             // 
-            comboBox1.Anchor = AnchorStyles.None;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(139, 12);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(265, 23);
-            comboBox1.TabIndex = 4;
+            cmbMateria.Anchor = AnchorStyles.None;
+            cmbMateria.FormattingEnabled = true;
+            cmbMateria.Location = new Point(139, 12);
+            cmbMateria.Name = "cmbMateria";
+            cmbMateria.Size = new Size(265, 23);
+            cmbMateria.TabIndex = 4;
             // 
             // txtEnunciado
             // 
@@ -202,7 +203,7 @@
             Controls.Add(btnAdicionar);
             Controls.Add(txtResposta);
             Controls.Add(txtEnunciado);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbMateria);
             Controls.Add(panel1);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -226,7 +227,7 @@
         private Label label3;
         private Panel panel1;
         private Label label4;
-        private ComboBox comboBox1;
+        private ComboBox cmbMateria;
         private TextBox txtEnunciado;
         private TextBox txtResposta;
         private Button btnAdicionar;

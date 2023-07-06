@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Dominio.ModuloMateria;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
 {
     public class Questao : EntidadeBase<Questao>
     {
-        //public Materia materia {get; set;}
+        public Materia materia {get; set;}
         public string resposta { get; set; }
         public string enunciado { get; set; }
         public List<Alternativa> alternativa { get; set; }

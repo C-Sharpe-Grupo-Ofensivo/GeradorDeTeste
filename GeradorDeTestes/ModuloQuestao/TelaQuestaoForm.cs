@@ -13,20 +13,21 @@ using System.Windows.Forms;
 
 namespace GeradorDeTestes.WinApp.ModuloQuestao
 {
-    public partial class TelaQuestãoForm : Form
+    public partial class TelaQuestaoForm : Form
     {
         private List<Questao> questoes;
-        public TelaQuestãoForm(Questao questao)
+        public TelaQuestaoForm(List<Materia> materia, List<Questao> questao)
         {
             InitializeComponent();
             this.ConfigurarDialog();
-            ConfigurarTela(questao);
+            ObterMateria(materia);
+            questoes = questao;
         }
         public void ObterMateria(List<Materia> materia)
         {
             foreach (Materia item in materia)
             {
-                
+                cmbMateria.Items.Add(item);
             }
         }
         public Questao ObterQuestao()
@@ -82,6 +83,15 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
             chkAlternativa.Items.Add(alternativa);
 
             txtResposta.Text = "";
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (chkAlternativa.SelectedIndex != -1)
+                chkAlternativa.Items.RemoveAt(chkAlternativa.SelectedIndex);
+
+            else
+                MessageBox.Show("Selecione uma Alternativa Senhorita Mariana");
         }
     }
 }
