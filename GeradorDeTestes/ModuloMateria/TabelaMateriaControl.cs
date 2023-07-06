@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Dominio.ModuloDisciplina;
+using GeradorDeTestes.Dominio.ModuloMateria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,18 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GeradorDeTestes.WinApp.ModuloDisciplina
+namespace GeradorDeTestes.WinApp.ModuloMateria
 {
-    public partial class TabelaDisciplinaControl : UserControl
+    public partial class TabelaMateriaControl : UserControl
     {
-        public TabelaDisciplinaControl()
+
+        public TabelaMateriaControl()
         {
             InitializeComponent();
             ConfigurarColunas();
 
-            gridDisciplinas.ConfigurarGridZebrado();
+            gridMateria.ConfigurarGridZebrado();
 
-            gridDisciplinas.ConfigurarGridSomenteLeitura();
+            gridMateria.ConfigurarGridSomenteLeitura();
         }
 
         private void ConfigurarColunas()
@@ -40,26 +42,26 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
             };
 
-            gridDisciplinas.Columns.AddRange(colunas);
+            gridMateria.Columns.AddRange(colunas);
         }
-        public void AtualizarRegistros(List<Disciplina> disciplinas)
+        public void AtualizarRegistros(List<Materia> materias)
         {
-            gridDisciplinas.Rows.Clear();
+            gridMateria.Rows.Clear();
 
-            foreach (Disciplina disciplina in disciplinas)
+            foreach (Materia materia in materias)
             {
-                gridDisciplinas.Rows.Add(disciplina.id, disciplina.nome);
+                gridMateria.Rows.Add(materia.id, materia.nome);
             }
         }
         public int ObterIdSelecionado()
         {
-            if (gridDisciplinas.SelectedRows.Count == 0)
+            if (gridMateria.SelectedRows.Count == 0)
                 return -1;
 
-            int id = Convert.ToInt32(gridDisciplinas.SelectedRows[0].Cells["id"].Value);
+            int id = Convert.ToInt32(gridMateria.SelectedRows[0].Cells["id"].Value);
 
             return id;
-        }
 
+        }
     }
 }

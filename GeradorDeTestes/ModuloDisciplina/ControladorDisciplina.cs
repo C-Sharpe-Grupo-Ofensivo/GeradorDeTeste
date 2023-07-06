@@ -28,8 +28,8 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
             if (Disciplina == null)
             {
-                MessageBox.Show($"Selecione um cliente primeiro!",
-                    "Edição de Clientes",
+                MessageBox.Show($"Selecione uma disciplina primeiro!",
+                    "Edição de disciplina",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -51,7 +51,7 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o disciplina {disciplina.nome}?", "Exclusão de Disciplina",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir a disciplina {disciplina.nome}?", "Exclusão da Disciplina",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
 

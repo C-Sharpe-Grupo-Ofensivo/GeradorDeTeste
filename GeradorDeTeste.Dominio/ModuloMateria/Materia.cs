@@ -1,28 +1,38 @@
-﻿using System;
+﻿using GeradorDeTestes.Dominio.ModuloDisciplina;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeradorDeTestes.Dominio.ModuloDisciplina
+namespace GeradorDeTestes.Dominio.ModuloMateria
 {
-    public class Disciplina : EntidadeBase<Disciplina>
+    public class Materia : EntidadeBase<Materia>
     {
+        public Disciplina disciplina { get; set; }
         public string nome { get; set; }
-        public Disciplina(int id, string nome) : this()
+
+
+        
+        public Materia(int id, string nome, Disciplina disciplina) : this()
         {
+            
             this.id = id;
             this.nome = nome;
-            
+            this.disciplina = disciplina;
         }
 
-  
+        public Materia(string nome)
+        {
+            this.nome = nome;
+        }
 
-        public Disciplina()
+        public Materia()
         {
         }
 
-        public override void AtualizarInformacoes(Disciplina registroAtualizado)
+
+        public override void AtualizarInformacoes(Materia registroAtualizado)
         {
             this.nome = registroAtualizado.nome;
         }
@@ -41,10 +51,10 @@ namespace GeradorDeTestes.Dominio.ModuloDisciplina
         }
         public override bool Equals(object? obj)
         {
-            return obj is Disciplina disciplina &&
-                   id == disciplina.id &&
-                   nome == disciplina.nome;
-                   
+            return obj is Materia materia &&
+                   id == materia.id &&
+                   nome == materia.nome;
+
         }
     }
 }

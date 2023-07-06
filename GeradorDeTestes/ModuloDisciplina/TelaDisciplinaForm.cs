@@ -18,7 +18,9 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
         {
             InitializeComponent();
             this.ConfigurarDialog();
+            
         }
+
         public Disciplina ObterDisciplina()
         {
             int id = Convert.ToInt32(txtId.Text);
@@ -26,7 +28,7 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
             string nome = txtNome.Text;
 
 
-            Disciplina disciplina = new Disciplina(nome);
+            Disciplina disciplina = new Disciplina(id, nome);
 
             if (id > 0)
                 disciplina.id = id;
@@ -54,5 +56,7 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
                 DialogResult = DialogResult.None;
             }
         }
+
+
     }
 }
