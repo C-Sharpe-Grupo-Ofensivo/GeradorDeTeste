@@ -14,11 +14,11 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 {
     public partial class TelaDisciplinaForm : Form
     {
-        public TelaDisciplinaForm()
+        public TelaDisciplinaForm(List<Disciplina>disciplinas)
         {
             InitializeComponent();
             this.ConfigurarDialog();
-            
+
         }
 
         public Disciplina ObterDisciplina()
@@ -43,20 +43,11 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
 
         }
-        private void btnGravar_Click(object sender, EventArgs e)
+
+        private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            Disciplina Disciplina = ObterDisciplina();
+            
 
-            string[] erros = Disciplina.Validar();
-
-            if (erros.Length > 0)
-            {
-                //TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
-
-                DialogResult = DialogResult.None;
-            }
         }
-
-
     }
 }
