@@ -40,5 +40,14 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
 
             return questao;
         }
+
+        public Alternativa ConverterParaAlternativa(SqlDataReader leitorQuestao)
+        {
+            string nome = Convert.ToString(leitorQuestao["ALTERNATIVA"]);
+            int id = Convert.ToInt32(leitorQuestao["ID_ALTERNATIVA"]);
+            Questao questao = ConverterRegistro(leitorQuestao);
+
+            return new Alternativa(nome, questao);
+        }
     }
 }
