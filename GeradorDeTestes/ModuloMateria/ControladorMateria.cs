@@ -15,9 +15,10 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
         private IRepositorioMateria repositorioMateria;
         private IRepositorioDisciplina disciplinaMateria;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina disciplinaMateria)
         {
             this.repositorioMateria = repositorioMateria;
+            this.disciplinaMateria = disciplinaMateria;
         }
         public override string ToolTipInserir { get { return "Inserir nova materia"; } }
 
@@ -68,8 +69,9 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 
         public override void Inserir()
         {
-            List<Disciplina> disciplina = disciplinaMateria.SelecionarTodos();
-            TelaMateriaForm telaMateria = new TelaMateriaForm(disciplina);
+
+            
+            TelaMateriaForm telaMateria = new TelaMateriaForm(disciplinaMateria.SelecionarTodos(), repositorioMateria.SelecionarTodos());
 
             DialogResult opcaoEscolhida = telaMateria.ShowDialog();
 

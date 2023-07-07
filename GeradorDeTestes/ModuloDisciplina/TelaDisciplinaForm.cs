@@ -14,7 +14,7 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 {
     public partial class TelaDisciplinaForm : Form
     {
-        public TelaDisciplinaForm(List<Disciplina>disciplinas)
+        public TelaDisciplinaForm(List<Disciplina> disciplinas)
         {
             InitializeComponent();
             this.ConfigurarDialog();
@@ -46,7 +46,7 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
         private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            
+
 
         }
     }

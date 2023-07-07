@@ -7,7 +7,7 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
         public Materia materia {get; set;}
         public string resposta { get; set; }
         public string enunciado { get; set; }
-        public List<Alternativa> alternativas { get; set; }
+        public List<Alternativa> alternativas { get; set; } = new List<Alternativa>();
         public string alternativaCorreta { get; set; }
         public Questao(int id, Materia materia, string resposta, string enunciado) : this()
         {

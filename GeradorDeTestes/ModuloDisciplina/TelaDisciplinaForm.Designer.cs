@@ -106,8 +106,10 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaDisciplinaForm";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "TelaDisciplina";
             ResumeLayout(false);

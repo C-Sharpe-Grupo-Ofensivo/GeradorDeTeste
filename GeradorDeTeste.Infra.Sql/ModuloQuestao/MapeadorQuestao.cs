@@ -16,13 +16,13 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
     {
         public override void ConfigurarParametros(SqlCommand comando, Questao registro)
         {
-            comando.Parameters.AddWithValue("ID", registro.id);
+            comando.Parameters.AddWithValue("@ID", registro.id);
 
-            comando.Parameters.AddWithValue("MATERIA_ID", registro.materia.id);
+            comando.Parameters.AddWithValue("@MATERIA_ID", registro.materia.id);
 
-            comando.Parameters.AddWithValue("ENUNCIADO", registro.enunciado);
+            comando.Parameters.AddWithValue("@ENUNCIADO", registro.enunciado);
 
-            comando.Parameters.AddWithValue("RESPOSTA", registro.resposta);
+            comando.Parameters.AddWithValue("@RESPOSTA", registro.resposta);
         }
 
         public override Questao ConverterRegistro(SqlDataReader leitorRegistros)

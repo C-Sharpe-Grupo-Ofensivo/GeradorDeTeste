@@ -191,7 +191,7 @@
             txtId.Size = new Size(55, 23);
             txtId.TabIndex = 11;
             // 
-            // TelaQuestãoForm
+            // TelaQuestaoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -208,9 +208,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "TelaQuestãoForm";
+            Name = "TelaQuestaoForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Questões";

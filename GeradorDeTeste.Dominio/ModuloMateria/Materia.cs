@@ -11,11 +11,11 @@ namespace GeradorDeTestes.Dominio.ModuloMateria
     {
         public Disciplina disciplina { get; set; }
         public string nome { get; set; }
-        public string serie { get; set; }
+        public int serie { get; set; }
 
 
         
-        public Materia(int id, string nome, Disciplina disciplina, string serie) : this()
+        public Materia(int id, string nome, Disciplina disciplina, int serie) : this()
         {
             
             this.id = id;
@@ -36,7 +36,10 @@ namespace GeradorDeTestes.Dominio.ModuloMateria
 
         public override void AtualizarInformacoes(Materia registroAtualizado)
         {
+            this.id = registroAtualizado.id;
             this.nome = registroAtualizado.nome;
+            this.disciplina = registroAtualizado.disciplina;
+            this.serie = registroAtualizado.serie;
         }
         public override string ToString()
         {

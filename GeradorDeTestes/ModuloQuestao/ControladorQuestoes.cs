@@ -51,6 +51,8 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
         {
             Questao questaoselecionada = ObterQuestaoSelecionado();
 
+
+
             if (questaoselecionada == null)
             {
                 MessageBox.Show($"Selecione uma Questão primeiro!",

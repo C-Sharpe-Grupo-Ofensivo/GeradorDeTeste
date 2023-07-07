@@ -8,6 +8,6 @@ namespace GeradorDeTestes.Dominio.ModuloMateria
 {
     public enum StatusSerieEnum
     {
-        Serie1,Serie2
+        Serie1 = 1, Serie2 = 2
     }
 }

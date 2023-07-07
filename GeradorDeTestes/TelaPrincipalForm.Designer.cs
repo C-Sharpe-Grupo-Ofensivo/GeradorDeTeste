@@ -40,9 +40,9 @@
             menuStrip1 = new MenuStrip();
             cadastrosMenuItem = new ToolStripMenuItem();
             disciplinaMenuItem = new ToolStripMenuItem();
-            compromissosMenuItem = new ToolStripMenuItem();
-            tarefasMenuItem = new ToolStripMenuItem();
-            despesasToolStripMenuItem = new ToolStripMenuItem();
+            materiaMenuItem = new ToolStripMenuItem();
+            questaoMenuItem = new ToolStripMenuItem();
+            testesMenuItem = new ToolStripMenuItem();
             despesasMenuItem = new ToolStripMenuItem();
             categoriasMenuItem = new ToolStripMenuItem();
             relatóriosToolStripMenuItem = new ToolStripMenuItem();
@@ -135,7 +135,7 @@
             // 
             // cadastrosMenuItem
             // 
-            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { disciplinaMenuItem, compromissosMenuItem, tarefasMenuItem, despesasToolStripMenuItem });
+            cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { disciplinaMenuItem, materiaMenuItem, questaoMenuItem, testesMenuItem });
             cadastrosMenuItem.Name = "cadastrosMenuItem";
             cadastrosMenuItem.Size = new Size(71, 20);
             cadastrosMenuItem.Text = "Cadastros";
@@ -147,24 +147,26 @@
             disciplinaMenuItem.Text = "Disciplina";
             disciplinaMenuItem.Click += disciplinaMenuItem_Click_1;
             // 
-            // compromissosMenuItem
+            // materiaMenuItem
             // 
-            compromissosMenuItem.Name = "compromissosMenuItem";
-            compromissosMenuItem.Size = new Size(125, 22);
-            compromissosMenuItem.Text = "Materia";
+            materiaMenuItem.Name = "materiaMenuItem";
+            materiaMenuItem.Size = new Size(125, 22);
+            materiaMenuItem.Text = "Materia";
+            materiaMenuItem.Click += materiaMenuItem_Click;
             // 
-            // tarefasMenuItem
+            // questaoMenuItem
             // 
-            tarefasMenuItem.Name = "tarefasMenuItem";
-            tarefasMenuItem.Size = new Size(125, 22);
-            tarefasMenuItem.Text = "Questoes";
+            questaoMenuItem.Name = "questaoMenuItem";
+            questaoMenuItem.Size = new Size(125, 22);
+            questaoMenuItem.Text = "Questoes";
+            questaoMenuItem.Click += questaoMenuItem_Click;
             // 
-            // despesasToolStripMenuItem
+            // testesMenuItem
             // 
-            despesasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
-            despesasToolStripMenuItem.Name = "despesasToolStripMenuItem";
-            despesasToolStripMenuItem.Size = new Size(125, 22);
-            despesasToolStripMenuItem.Text = "Testes";
+            testesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
+            testesMenuItem.Name = "testesMenuItem";
+            testesMenuItem.Size = new Size(125, 22);
+            testesMenuItem.Text = "Testes";
             // 
             // despesasMenuItem
             // 
@@ -193,8 +195,14 @@
             Controls.Add(barraFerramentas);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "TelaPrincipalForm";
-            Text = "Form1";
+            ShowIcon = false;
+            SizeGripStyle = SizeGripStyle.Hide;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Gerador De Testes";
             barraFerramentas.ResumeLayout(false);
             barraFerramentas.PerformLayout();
             statusStrip1.ResumeLayout(false);
@@ -218,9 +226,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem cadastrosMenuItem;
         private ToolStripMenuItem disciplinaMenuItem;
-        private ToolStripMenuItem compromissosMenuItem;
-        private ToolStripMenuItem tarefasMenuItem;
-        private ToolStripMenuItem despesasToolStripMenuItem;
+        private ToolStripMenuItem materiaMenuItem;
+        private ToolStripMenuItem questaoMenuItem;
+        private ToolStripMenuItem testesMenuItem;
         private ToolStripMenuItem despesasMenuItem;
         private ToolStripMenuItem categoriasMenuItem;
         private ToolStripMenuItem relatóriosToolStripMenuItem;

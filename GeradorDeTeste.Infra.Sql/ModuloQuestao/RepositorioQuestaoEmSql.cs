@@ -51,12 +51,12 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
             @"INSERT INTO [TBQUESTAO]
 			(
 				[ALTERNATIVA]
-				, [ID_QUESTAO]
+				, [QUESTAO_ID]
 			)
 			VALUES
 			(
 				@ALTERNATIVA
-				@ID_QUESTAO
+				@ID
 			);
 
 			SELECT SCOPE_IDENTITY()";
@@ -66,21 +66,20 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
 			SET
 				[ALTERNATIVA] = @ALTERNATIVA
 			WHERE
-				[ID_QUESTAO] = @ID_QUESTAO";
+				[QUESTAO_ID] = @ID";
 
         protected string sqlExcluirAlternativa =>
             @"DELETE FROM [TBQUESTAO]
 			WHERE 
-				[ID_QUESTAO] = @ID_QUESTAO";
+				[QUESTAO_ID] = @ID";
 
         protected override string sqlSelecionarTodos =>
             @"SELECT 
 
-				QUESTAO.[ID]        QUESTAO_ID 
+				QUESTAO.[ID]        QUESTAO_ID
 				, QUESTAO.[ENUNCIADO]      QUESTAO_ENUNCIADO
 				, QUESTAO.[MATERIA_ID]		MATERIA_ID
 				, QUESTAO.[RESPOSTA]		QUESTAO_RESPOSTA
-				, ALTERNATIVA.[ALTERNATIVA]		ALTERNATIVA_ALTERNATIVA
 				, MATERIA.[NOME]		MATERIA_NOME
 				, MATERIA.[SERIE]		MATERIA_SERIE
 				, MATERIA.[DISCIPLINA_ID]		DISCIPLINA_ID
@@ -94,13 +93,12 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
 				on MATERIA.[DISCIPLINA_ID] = DISCIPLINA.ID";
 
         protected override string sqlSelecionarPorId =>
-			@"SELECT 
+            @"SELECT 
 
-				QUESTAO.[ID]        QUESTAO_ID 
+				QUESTAO.[ID]        QUESTAO_ID
 				, QUESTAO.[ENUNCIADO]      QUESTAO_ENUNCIADO
 				, QUESTAO.[MATERIA_ID]		MATERIA_ID
 				, QUESTAO.[RESPOSTA]		QUESTAO_RESPOSTA
-				, ALTERNATIVA.[ALTERNATIVA]		ALTERNATIVA_ALTERNATIVA
 				, MATERIA.[NOME]		MATERIA_NOME
 				, MATERIA.[SERIE]		MATERIA_SERIE
 				, MATERIA.[DISCIPLINA_ID]		DISCIPLINA_ID
@@ -114,21 +112,23 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
 				INNER JOIN [TBDISCIPLINA] as DISCIPLINA
 				on MATERIA.[DISCIPLINA_ID] = DISCIPLINA.ID
 			WHERE 
-				[ID] = @ID";
+				QUESTAO.[ID] = @ID";
 
         private const string sqlCarregarAlternativas =
             @"SELECT 
-	            ALTERNATIVA.ID            ID_QUESTAO, 
-	            ALTERNATIVA.ALTERNATIVA     ALTERNATIVA_ALTERNATIVA, 
+	            A.[ID]            ALTERNATIVA_ID
+	            , A.[RESPOSTA]      ALTERNATIVA_RESPOSTA
+                , A.[VERDADEIRO]      ALTERNATIVA_VERDADEIRA
+                , A.[QUESTAO_ID]        ALTERNATIVA_QUESTAO_ID
             FROM 
-	            TBQUESTAO I 
+	            [TBALTERNATIVA] AS A
 	
-	            INNER JOIN TBTEMA_TBITEM TI
+	            INNER JOIN [TBQUESTAO] AS Q
 		
-		            ON I.ID = TI.ITEM_ID
+		            ON  A.[QUESTAO_ID] = Q.[ID]
             WHERE 
 
-	            TI.TEMA_ID = @TEMA_ID";
+	            A.QUESTAO_ID = @QUESTAO_ID";
 
         public void Inserir(Questao novaQuestao, List<Alternativa> alternativasAdicionadas)
 		{
@@ -268,7 +268,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
 
             return questao;
         }
-        private void CarregarAlternativas(Questao questao)
+        public void CarregarAlternativas(Questao questao)
         {
             MapeadorQuestao mapeadorQuestao = new MapeadorQuestao();
 
@@ -279,7 +279,6 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
             comandoSelecionarItens.CommandText = sqlCarregarAlternativas;
 
             comandoSelecionarItens.Parameters.AddWithValue("QUESTAO_ID", questao.id);
-            comandoSelecionarItens.Parameters.AddWithValue("MATERIA_ID", questao.materia.id);
 
             SqlDataReader leitorQuestao = comandoSelecionarItens.ExecuteReader();
 

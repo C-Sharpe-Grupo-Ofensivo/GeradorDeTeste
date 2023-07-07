@@ -14,11 +14,13 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 {
     public partial class TelaMateriaForm : Form
     {
-        public TelaMateriaForm(List<Disciplina>disciplinas)
+        private List<Materia> materias;
+        public TelaMateriaForm(List<Disciplina> disciplinas, List<Materia> materias)
         {
             InitializeComponent();
             this.ConfigurarDialog();
             CarregarDisciplinas(disciplinas);
+            this.materias = materias;
         }
         private void CarregarDisciplinas(List<Disciplina> disciplinas)
         {
@@ -45,9 +47,11 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 
             string nome = txtNome.Text;
 
+            int serie = (int)ObterFiltroSerie();
+
             Disciplina disciplina = (Disciplina)cbDisciplina.SelectedItem;
 
-            Materia materia = new Materia(nome);
+            Materia materia = new Materia(id, nome, disciplina, serie);
 
             if (id > 0)
                 materia.id = id;
@@ -60,7 +64,7 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
 
             txtNome.Text = materia.nome;
 
-
+            cbDisciplina.SelectedItem = materia.disciplina;
         }
         private void btnGravar_Click(object sender, EventArgs e)
         {

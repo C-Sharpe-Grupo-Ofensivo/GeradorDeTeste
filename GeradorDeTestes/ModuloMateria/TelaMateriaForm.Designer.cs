@@ -164,8 +164,10 @@
             Controls.Add(label1);
             Controls.Add(Id);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaMateriaForm";
+            ShowIcon = false;
             Text = "TelaMateriaForm";
             ResumeLayout(false);
             PerformLayout();

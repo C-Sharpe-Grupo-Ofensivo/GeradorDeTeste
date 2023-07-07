@@ -1,7 +1,12 @@
 using GeradorDeTeste.Infra.Sql.ModuloDisciplina;
+using GeradorDeTeste.Infra.Sql.ModuloMateria;
+using GeradorDeTeste.Infra.Sql.ModuloQuestao;
 using GeradorDeTestes.Dominio.ModuloDisciplina;
 using GeradorDeTestes.Dominio.ModuloMateria;
+using GeradorDeTestes.Dominio.ModuloQuestao;
 using GeradorDeTestes.WinApp.ModuloDisciplina;
+using GeradorDeTestes.WinApp.ModuloMateria;
+using GeradorDeTestes.WinApp.ModuloQuestao;
 
 namespace GeradorDeTestes
 {
@@ -15,6 +20,8 @@ namespace GeradorDeTestes
 
         private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmSql();
         private IRepositorioMateria repositorioMateria = new RepositorioMateriaEmSql();
+        private IRepositorioQuestao repositorioQuestao = new RepositorioQuestaoEmSql();
+
 
         public TelaPrincipalForm()
         {
@@ -103,6 +110,18 @@ namespace GeradorDeTestes
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             controlador.Excluir();
+        }
+
+        private void materiaMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina);
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void questaoMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorQuestoes(repositorioQuestao, repositorioMateria);
+            ConfigurarTelaPrincipal(controlador);
         }
     }
 }

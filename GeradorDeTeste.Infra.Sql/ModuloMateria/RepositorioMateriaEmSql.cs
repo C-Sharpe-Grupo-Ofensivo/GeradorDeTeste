@@ -44,7 +44,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloMateria
 														   ,D.[NOME]            DISCIPLINA_NOME
 														FROM 
 															[TBMATERIA] AS M
-														INNER JOIN [DISCIPLINA] AS D
+														INNER JOIN [TBDISCIPLINA] AS D
 																ON M.[DISCIPLINA_ID] = D.ID";
 
 		protected override string sqlSelecionarPorId => @"SELECT 
@@ -55,7 +55,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloMateria
 													   ,D.[NOME]           DISCIPLINA_NOME
 													FROM 
 														[TBMATERIA] AS M
-													INNER JOIN [DISCIPLINA] AS D
+													INNER JOIN [TBDISCIPLINA] AS D
 															ON M.[DISCIPLINA_ID] = D.ID
 													WHERE 
 														M.[ID] = @ID";
