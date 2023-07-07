@@ -1,6 +1,7 @@
 ﻿using GeradorDeTeste.Infra.Sql.Compartilhado;
 using GeradorDeTeste.Infra.Sql.ModuloDisciplina;
 using GeradorDeTestes.Dominio.ModuloDisciplina;
+using GeradorDeTestes.Dominio.ModuloMateria;
 using GeradorDeTestes.Dominio.ModuloQuestao;
 using Microsoft.Data.SqlClient;
 using System;
@@ -290,6 +291,34 @@ namespace GeradorDeTeste.Infra.Sql.ModuloQuestao
             }
 
             conexaoComBanco.Close();
+        }
+        public List<Questao> SelecionarTodos(bool carregarAlternativas = false)
+        {
+            MapeadorQuestao mapeadorQuestao = new MapeadorQuestao();
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarTodos = conexaoComBanco.CreateCommand();
+            comandoSelecionarTodos.CommandText = sqlSelecionarTodos;
+
+            SqlDataReader leitorQuestao = comandoSelecionarTodos.ExecuteReader();
+
+            List<Questao> questoes = new List<Questao>();
+
+            while (leitorQuestao.Read())
+            {
+                Questao questao = mapeadorQuestao.ConverterRegistro(leitorQuestao);
+
+                if (carregarAlternativas)
+                    CarregarAlternativas(questao);
+
+                questoes.Add(questao);
+            }
+
+            conexaoComBanco.Close();
+
+            return questoes;
         }
     }
 }
