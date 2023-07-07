@@ -1,5 +1,6 @@
 using GeradorDeTeste.Infra.Sql.ModuloDisciplina;
 using GeradorDeTestes.Dominio.ModuloDisciplina;
+using GeradorDeTestes.Dominio.ModuloMateria;
 using GeradorDeTestes.WinApp.ModuloDisciplina;
 
 namespace GeradorDeTestes
@@ -13,6 +14,7 @@ namespace GeradorDeTestes
         private static TelaPrincipalForm telaPrincipal;
 
         private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmSql();
+        private IRepositorioMateria repositorioMateria = new RepositorioMateriaEmSql();
 
         public TelaPrincipalForm()
         {
