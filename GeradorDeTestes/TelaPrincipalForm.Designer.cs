@@ -90,6 +90,7 @@
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(7);
             btnEditar.Size = new Size(66, 66);
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
@@ -100,6 +101,7 @@
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Padding = new Padding(7);
             btnExcluir.Size = new Size(66, 66);
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // labelTipoCadastro
             // 
@@ -141,27 +143,27 @@
             // disciplinaMenuItem
             // 
             disciplinaMenuItem.Name = "disciplinaMenuItem";
-            disciplinaMenuItem.Size = new Size(180, 22);
+            disciplinaMenuItem.Size = new Size(125, 22);
             disciplinaMenuItem.Text = "Disciplina";
             disciplinaMenuItem.Click += disciplinaMenuItem_Click_1;
             // 
             // compromissosMenuItem
             // 
             compromissosMenuItem.Name = "compromissosMenuItem";
-            compromissosMenuItem.Size = new Size(180, 22);
+            compromissosMenuItem.Size = new Size(125, 22);
             compromissosMenuItem.Text = "Materia";
             // 
             // tarefasMenuItem
             // 
             tarefasMenuItem.Name = "tarefasMenuItem";
-            tarefasMenuItem.Size = new Size(180, 22);
+            tarefasMenuItem.Size = new Size(125, 22);
             tarefasMenuItem.Text = "Questoes";
             // 
             // despesasToolStripMenuItem
             // 
             despesasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
             despesasToolStripMenuItem.Name = "despesasToolStripMenuItem";
-            despesasToolStripMenuItem.Size = new Size(180, 22);
+            despesasToolStripMenuItem.Size = new Size(125, 22);
             despesasToolStripMenuItem.Text = "Testes";
             // 
             // despesasMenuItem

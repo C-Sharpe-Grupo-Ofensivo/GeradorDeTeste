@@ -1,6 +1,8 @@
 ﻿using GeradorDeTestes.Dominio.ModuloDisciplina;
+using GeradorDeTestes.Dominio.ModuloMateria;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,17 +26,36 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
         public override void Editar()
         {
-            Disciplina Disciplina = ObterDisciplinaSelecionado();
+           Disciplina disciplina = ObterDisciplinaSelecionado();
 
-            if (Disciplina == null)
+            if (disciplina == null)
             {
-                MessageBox.Show($"Selecione uma disciplina primeiro!",
+                MessageBox.Show($"Nenhuma disciplina selecionada!",
                     "Edição de disciplina",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
+
+            TelaDisciplinaForm tela = new TelaDisciplinaForm(repositorioDisciplina.SelecionarTodos());
+            tela.ConfigurarTela(disciplina);
+
+            DialogResult opcaoEscolhida = tela.ShowDialog();
+
+            while (opcaoEscolhida == DialogResult.OK)
+            {
+                Disciplina disciplinaAtualizada = tela.ObterDisciplina();
+                if (ValidarAtributos(disciplinaAtualizada))
+                {
+                    opcaoEscolhida = tela.ShowDialog();
+                    continue;
+                }
+                repositorioDisciplina.Editar(disciplinaAtualizada.id, disciplinaAtualizada);
+                break;
+            }
+
+            CarregarDisciplina();
         }
 
         public override void Excluir()
@@ -65,16 +86,24 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
 
         public override void Inserir()
         {
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm();
+            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm(repositorioDisciplina.SelecionarTodos()); 
 
             DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
 
-            if (opcaoEscolhida == DialogResult.OK)
+            while (opcaoEscolhida == DialogResult.OK)
             {
                 Disciplina disciplina = telaDisciplina.ObterDisciplina();
-
+                if (ValidarAtributos(disciplina))
+                {
+                    opcaoEscolhida = telaDisciplina.ShowDialog();
+                    continue;
+                }
                 repositorioDisciplina.Inserir(disciplina);
+                break;
             }
+            
+
+
             CarregarDisciplina();
         }
         private void CarregarDisciplina()
@@ -103,6 +132,21 @@ namespace GeradorDeTestes.WinApp.ModuloDisciplina
             int id = tabelaDisciplina.ObterIdSelecionado();
 
             return repositorioDisciplina.SelecionarPorId(id);
+        }
+        private bool ValidarAtributos(Disciplina disciplina)
+        {
+            if (repositorioDisciplina.SelecionarTodos().Any(m => m.nome == disciplina.nome))
+            {
+                MessageBox.Show($"Disciplina já cadastrada!", "Nova disciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return true;
+            }
+            else if (disciplina.nome.Length < 3)
+            {
+                MessageBox.Show($"O nome da disciplina não pode ser menor que 3 caracteres!", "Nova Disciplina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return true;
+            }
+
+            return false;
         }
     }
 }
