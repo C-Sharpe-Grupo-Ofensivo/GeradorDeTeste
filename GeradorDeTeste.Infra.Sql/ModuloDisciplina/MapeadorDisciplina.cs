@@ -1,11 +1,6 @@
 ﻿using GeradorDeTeste.Infra.Sql.Compartilhado;
 using GeradorDeTestes.Dominio.ModuloDisciplina;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeradorDeTeste.Infra.Sql.ModuloDisciplina
 {
