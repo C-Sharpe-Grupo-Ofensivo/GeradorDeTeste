@@ -85,7 +85,7 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
             bool recuperacao = ckRecuperacao.Checked;
      
 
-            Teste teste = new Teste(id, nome, materia, recuperacao, disciplina, questao);
+            Teste teste = new Teste(id, nome, materia, recuperacao, disciplina);
             teste.id = id;
 
             return teste;

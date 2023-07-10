@@ -30,7 +30,7 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
         }
         public override string ToolTipInserir => "Inserir novo Teste";
 
-        public override string ToolTipEditar => throw new NotImplementedException();
+        public override string ToolTipEditar => "";
 
         public override string ToolTipExcluir => "Excluir Teste";
 

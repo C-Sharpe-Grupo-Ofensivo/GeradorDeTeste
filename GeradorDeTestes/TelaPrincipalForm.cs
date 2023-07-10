@@ -1,12 +1,15 @@
 using GeradorDeTeste.Infra.Sql.ModuloDisciplina;
 using GeradorDeTeste.Infra.Sql.ModuloMateria;
 using GeradorDeTeste.Infra.Sql.ModuloQuestao;
+using GeradorDeTeste.Infra.Sql.ModuloTeste;
 using GeradorDeTestes.Dominio.ModuloDisciplina;
 using GeradorDeTestes.Dominio.ModuloMateria;
 using GeradorDeTestes.Dominio.ModuloQuestao;
+using GeradorDeTestes.Dominio.ModuloTeste;
 using GeradorDeTestes.WinApp.ModuloDisciplina;
 using GeradorDeTestes.WinApp.ModuloMateria;
 using GeradorDeTestes.WinApp.ModuloQuestao;
+using GeradorDeTestes.WinApp.ModuloTeste;
 
 namespace GeradorDeTestes
 {
@@ -21,6 +24,7 @@ namespace GeradorDeTestes
         private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmSql();
         private IRepositorioMateria repositorioMateria = new RepositorioMateriaEmSql();
         private IRepositorioQuestao repositorioQuestao = new RepositorioQuestaoEmSql();
+        private IRepositorioTeste repositorioTeste = new RepositorioTesteEmSql();
 
 
         public TelaPrincipalForm()
@@ -121,6 +125,12 @@ namespace GeradorDeTestes
         private void questaoMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorQuestoes(repositorioQuestao, repositorioMateria);
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+        private void testesMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTeste(repositorioTeste, repositorioDisciplina, repositorioQuestao, repositorioMateria);
             ConfigurarTelaPrincipal(controlador);
         }
     }

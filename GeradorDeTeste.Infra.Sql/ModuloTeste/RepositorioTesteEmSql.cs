@@ -1,5 +1,8 @@
 ﻿using GeradorDeTeste.Infra.Sql.Compartilhado;
+using GeradorDeTeste.Infra.Sql.ModuloQuestao;
+using GeradorDeTestes.Dominio.ModuloQuestao;
 using GeradorDeTestes.Dominio.ModuloTeste;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -156,5 +159,124 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 			WHERE 
 
 				TBT.TESTE_ID = @TESTE_ID";
-	}
+
+        public void Inserir(Teste novoRegistro, List<Questao> questoesAdicionadas)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoInserir = conexaoComBanco.CreateCommand();
+            comandoInserir.CommandText = sqlInserir;
+
+            MapeadorTeste mapeador = new MapeadorTeste();
+
+            mapeador.ConfigurarParametros(comandoInserir, novoRegistro);
+
+            object id = comandoInserir.ExecuteScalar();
+
+            novoRegistro.id = Convert.ToInt32(id);
+
+            conexaoComBanco.Close();
+
+            foreach (Questao questao in questoesAdicionadas)
+            {
+                AdicionarQuestao(novoRegistro, questao);
+            }
+        }
+
+        public void Excluir(Teste registroSelecionado)
+        {
+            foreach (Questao QuestaoParaRemover in registroSelecionado.questoes)
+            {
+                RemoverQuestao(QuestaoParaRemover, registroSelecionado);
+            }
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoExcluir = conexaoComBanco.CreateCommand();
+            comandoExcluir.CommandText = sqlExcluir;
+
+            comandoExcluir.Parameters.AddWithValue("ID", registroSelecionado.id);
+
+            comandoExcluir.ExecuteNonQuery();
+
+            conexaoComBanco.Close();
+        }
+
+        public void AdicionarQuestao(Teste teste, Questao questao)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoInserir = conexaoComBanco.CreateCommand();
+            comandoInserir.CommandText = sqlAdicionarQuestao;
+
+            comandoInserir.Parameters.AddWithValue("QUESTAO_ID", questao.id);
+            comandoInserir.Parameters.AddWithValue("TESTE_ID", teste.id);
+
+            comandoInserir.ExecuteNonQuery();
+
+            conexaoComBanco.Close();
+        }
+
+        public void CarregarQuestoes(Teste teste)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarItens = conexaoComBanco.CreateCommand();
+            comandoSelecionarItens.CommandText = sqlCarregasQuestoesTeste;
+
+            comandoSelecionarItens.Parameters.AddWithValue("TESTE_ID", teste.id);
+            comandoSelecionarItens.Parameters.AddWithValue("MATERIA_ID", teste.materia.id);
+            comandoSelecionarItens.Parameters.AddWithValue("DISCIPLINA_ID", teste.disciplina.id);
+
+            SqlDataReader leitorQuestao = comandoSelecionarItens.ExecuteReader();
+
+            while (leitorQuestao.Read())
+            {
+                MapeadorQuestao mapeador = new MapeadorQuestao();
+
+                Questao questao = mapeador.ConverterRegistro(leitorQuestao);
+
+                teste.AdicionarQuestao(questao);
+            }
+
+            conexaoComBanco.Close();
+        }
+
+        private void RemoverQuestao(Questao questao, Teste teste)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoInserir = conexaoComBanco.CreateCommand();
+            comandoInserir.CommandText = sqlRemoverQuestoes;
+
+            comandoInserir.Parameters.AddWithValue("TESTE_ID", teste.id);
+            comandoInserir.Parameters.AddWithValue("QUESTAO_ID", questao.id);
+
+            comandoInserir.ExecuteNonQuery();
+
+            conexaoComBanco.Close();
+        }
+
+        public Teste SelecionarPorId(int id)
+        {
+            Teste teste = base.SelecionarPorId(id);
+
+            if (teste != null)
+                CarregarQuestoes(teste);
+
+            return teste;
+        }
+
+        public List<Teste> SelecionarTodos()
+        {
+            List<Teste> testes = base.SelecionarTodos();
+
+            return testes;
+        }
+    }
 }

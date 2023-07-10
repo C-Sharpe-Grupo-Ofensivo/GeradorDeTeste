@@ -43,8 +43,6 @@
             materiaMenuItem = new ToolStripMenuItem();
             questaoMenuItem = new ToolStripMenuItem();
             testesMenuItem = new ToolStripMenuItem();
-            despesasMenuItem = new ToolStripMenuItem();
-            categoriasMenuItem = new ToolStripMenuItem();
             relatóriosToolStripMenuItem = new ToolStripMenuItem();
             barraFerramentas.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -143,42 +141,30 @@
             // disciplinaMenuItem
             // 
             disciplinaMenuItem.Name = "disciplinaMenuItem";
-            disciplinaMenuItem.Size = new Size(125, 22);
+            disciplinaMenuItem.Size = new Size(180, 22);
             disciplinaMenuItem.Text = "Disciplina";
             disciplinaMenuItem.Click += disciplinaMenuItem_Click_1;
             // 
             // materiaMenuItem
             // 
             materiaMenuItem.Name = "materiaMenuItem";
-            materiaMenuItem.Size = new Size(125, 22);
+            materiaMenuItem.Size = new Size(180, 22);
             materiaMenuItem.Text = "Materia";
             materiaMenuItem.Click += materiaMenuItem_Click;
             // 
             // questaoMenuItem
             // 
             questaoMenuItem.Name = "questaoMenuItem";
-            questaoMenuItem.Size = new Size(125, 22);
+            questaoMenuItem.Size = new Size(180, 22);
             questaoMenuItem.Text = "Questoes";
             questaoMenuItem.Click += questaoMenuItem_Click;
             // 
             // testesMenuItem
             // 
-            testesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
             testesMenuItem.Name = "testesMenuItem";
-            testesMenuItem.Size = new Size(125, 22);
+            testesMenuItem.Size = new Size(180, 22);
             testesMenuItem.Text = "Testes";
-            // 
-            // despesasMenuItem
-            // 
-            despesasMenuItem.Name = "despesasMenuItem";
-            despesasMenuItem.Size = new Size(130, 22);
-            despesasMenuItem.Text = "Despesas";
-            // 
-            // categoriasMenuItem
-            // 
-            categoriasMenuItem.Name = "categoriasMenuItem";
-            categoriasMenuItem.Size = new Size(130, 22);
-            categoriasMenuItem.Text = "Categorias";
+            testesMenuItem.Click += testesMenuItem_Click;
             // 
             // relatóriosToolStripMenuItem
             // 
@@ -229,8 +215,6 @@
         private ToolStripMenuItem materiaMenuItem;
         private ToolStripMenuItem questaoMenuItem;
         private ToolStripMenuItem testesMenuItem;
-        private ToolStripMenuItem despesasMenuItem;
-        private ToolStripMenuItem categoriasMenuItem;
         private ToolStripMenuItem relatóriosToolStripMenuItem;
     }
 }

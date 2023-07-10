@@ -38,6 +38,11 @@ namespace GeradorDeTestes.Dominio.ModuloTeste
             this.disciplina = registroAtualizado.disciplina;
             this.questoes = registroAtualizado.questoes;
         }
+        public void AdicionarQuestao(Questao questao)
+        {
+            if (questoes.Contains(questao) == false)
+                questoes.Add(questao);
+        }
 
         public override string[] Validar()
         {
