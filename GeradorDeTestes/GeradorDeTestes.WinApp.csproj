@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloTeste\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GeradorDeTeste.Dominio\GeradorDeTestes.Dominio.csproj" />
     <ProjectReference Include="..\GeradorDeTeste.Infra.Sql\GeradorDeTeste.Infra.Sql.csproj" />
   </ItemGroup>
