@@ -40,7 +40,7 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
             List<Alternativa> alternativa = new List<Alternativa>();
             alternativa.AddRange(chkAlternativa.Items.Cast<Alternativa>());
 
-            Questao questao = new Questao(materia, resposta, enunciado, alternativa);
+            Questao questao = new Questao(id,materia, resposta, enunciado);
 
             if (id > 0)
                 questao.id = id;
@@ -93,6 +93,11 @@ namespace GeradorDeTestes.WinApp.ModuloQuestao
 
             else
                 MessageBox.Show("Selecione uma Alternativa Senhorita Mariana");
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

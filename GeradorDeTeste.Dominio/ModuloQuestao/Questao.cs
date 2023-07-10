@@ -15,16 +15,16 @@ namespace GeradorDeTestes.Dominio.ModuloQuestao
             this.materia = materia;
             this.resposta = resposta;
             this.enunciado = enunciado;
-            this.alternativas = alternativas;
+            this.alternativas = new List<Alternativa>();
         }
 
-        public Questao(Materia materia, string resposta, string enunciado, List<Alternativa> alternativa)
-        {
-            this.materia = materia;
-            this.resposta = resposta;
-            this.enunciado = enunciado;
-            this.alternativas = alternativa;
-        }
+        //public Questao(Materia materia, string resposta, string enunciado, List<Alternativa> alternativa)
+        //{
+        //    this.materia = materia;
+        //    this.resposta = resposta;
+        //    this.enunciado = enunciado;
+        //    this.alternativas = alternativa;
+        //}
 
         public Questao()
         {

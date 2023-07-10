@@ -62,6 +62,7 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
         public void ConfigurarTela(Teste teste)
         {
             txtId.Text = teste.id.ToString();
+
             txtNome.Text = teste.nome;
 
             cmbDisciplina.Text = teste.disciplina.ToString();
@@ -77,16 +78,18 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
 
         public Teste ObterTeste()
         {
-            int id = int.Parse(txtId.Text);
+
+            int id = Convert.ToInt32(txtId.Text);
             string nome = txtNome.Text;
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
-            Materia materia = (Materia)cmbDisciplina.SelectedItem;
-
+            Materia materia = (Materia)cmbMateria.SelectedItem;
+            List<Questao> questao = new List<Questao>();
             bool recuperacao = ckRecuperacao.Checked;
-     
+
 
             Teste teste = new Teste(id, nome, materia, recuperacao, disciplina);
-            teste.id = id;
+            if (id > 0)
+                teste.id = id;
 
             return teste;
         }

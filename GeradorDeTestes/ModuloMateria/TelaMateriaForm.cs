@@ -79,5 +79,10 @@ namespace GeradorDeTestes.WinApp.ModuloMateria
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

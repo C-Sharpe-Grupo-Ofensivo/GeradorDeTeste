@@ -190,6 +190,8 @@
             txtId.ReadOnly = true;
             txtId.Size = new Size(55, 23);
             txtId.TabIndex = 11;
+            txtId.Text = "0";
+            txtId.TextChanged += txtId_TextChanged;
             // 
             // TelaQuestaoForm
             // 

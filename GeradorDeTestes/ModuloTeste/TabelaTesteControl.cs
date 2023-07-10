@@ -16,6 +16,10 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
         public TabelaTesteControl()
         {
             InitializeComponent();
+            ConfigurarColunas();
+            gridTeste.ConfigurarGridZebrado();
+
+            gridTeste.ConfigurarGridSomenteLeitura();
         }
 
         public void AtualizarRegistros(List<Teste> testes)
@@ -40,7 +44,7 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = "titulo",
+                    Name = "nome",
                     HeaderText = "Titulo"
                 },
                 new DataGridViewTextBoxColumn()
@@ -55,9 +59,10 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
                 },
                 new DataGridViewTextBoxColumn()
                 {
-                    Name = "quantidadeQuestao",
-                    HeaderText = "Total Questoes"
+                    Name = "recuperacao",
+                    HeaderText = "Recuprecao"
                 }
+
            };
 
             gridTeste.Columns.AddRange(colunas);

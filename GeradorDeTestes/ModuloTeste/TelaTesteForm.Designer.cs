@@ -54,6 +54,7 @@
             txtId.ReadOnly = true;
             txtId.Size = new Size(34, 23);
             txtId.TabIndex = 23;
+            txtId.Text = "0";
             // 
             // label5
             // 

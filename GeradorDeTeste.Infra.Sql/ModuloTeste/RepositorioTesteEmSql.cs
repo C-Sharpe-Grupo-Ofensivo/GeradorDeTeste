@@ -42,7 +42,11 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 													WHERE 
 														[ID] = @ID";
 
-		protected override string sqlSelecionarTodos => @"SELECT 
+        protected  string sqlExcluirQuestoes => @"DELETE FROM [TBTESTE_TBQUESTAO]
+													WHERE 
+														[TESTE_ID] = @TESTE_ID";
+
+        protected override string sqlSelecionarTodos => @"SELECT 
 															T.[ID]                  TESTE_ID 
 														   ,T.[NOME]                TESTE_NOME
 														   ,T.[DISCIPLINA_ID]       TESTE_DISCIPLINA_ID
@@ -59,7 +63,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 															[TBTESTE] AS T
 														INNER JOIN [TBMATERIA] AS M
 																ON T.[MATERIA_ID] = M.ID
-														INNER JOIN [DISCIPLINA] AS D
+														INNER JOIN [TBDISCIPLINA] AS D
 																ON M.[DISCIPLINA_ID] = D.ID";
 
 
@@ -79,7 +83,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 															[TBTESTE] AS T
 														INNER JOIN [TBMATERIA] AS M
 																ON T.[MATERIA_ID] = M.ID
-														INNER JOIN [DISCIPLINA] AS D
+														INNER JOIN [TBDISCIPLINA] AS D
 																ON M.[DISCIPLINA_ID] = D.ID
 													WHERE 
 														T.[ID] = @ID";
@@ -125,8 +129,8 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 				Q.MATERIA_ID = @MATERIA_ID AND M.DISCIPLINA_ID = @DISCIPLINA_ID";
 
 		private const string sqlRemoverQuestoes =
-			@"DELETE FROM TBQUESTAO_TBTESTE
-				WHERE TESTE_ID = @TESTE_ID AND QUESTAO_ID = @QUESTAO_ID";
+			@"DELETE FROM TBTESTE_TBQUESTAO
+				WHERE TESTE_ID = @TESTE_ID";
 
 		private const string sqlCarregasQuestoesTeste = @"SELECT 
 				Q.ID                QUESTAO_ID, 
@@ -134,7 +138,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 				Q.ENUNCIADO         QUESTAO_ENUNCIADO,
 				Q.RESPOSTA          QUESTAO_RESPOSTA,
 
-				TBT.TESTE_ID        TESTE_ID,
+				TB.TESTE_ID        TESTE_ID,
 				
 				M.ID                MATERIA_ID,
 				M.NOME              MATERIA_NOME,
@@ -145,20 +149,20 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 				D.NOME           DISCIPLINA_NOME
 				
 			FROM 
-				[QUESTAO] Q
+				[TBQUESTAO] AS Q
 
-				INNER JOIN TBQUESTAO_TBTESTE TBT
-					ON Q.ID = TBT.QUESTAO_ID
+				INNER JOIN TBTESTE_TBQUESTAO AS TB
+					ON Q.ID = TB.QUESTAO_ID
 
-				INNER JOIN TBMATERIA M
+				INNER JOIN TBMATERIA AS M
 					ON Q.MATERIA_ID = M.ID
 	
-				INNER JOIN DISCIPLINA D
+				INNER JOIN TBDISCIPLINA AS D
 					ON M.DISCIPLINA_ID = D.ID
 
 			WHERE 
 
-				TBT.TESTE_ID = @TESTE_ID";
+				TB.TESTE_ID = @TESTE_ID";
 
         public void Inserir(Teste novoRegistro, List<Questao> questoesAdicionadas)
         {
@@ -186,10 +190,9 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 
         public void Excluir(Teste registroSelecionado)
         {
-            foreach (Questao QuestaoParaRemover in registroSelecionado.questoes)
-            {
-                RemoverQuestao(QuestaoParaRemover, registroSelecionado);
-            }
+            
+                RemoverQuestao(registroSelecionado);
+            
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
@@ -227,10 +230,9 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
 
             SqlCommand comandoSelecionarItens = conexaoComBanco.CreateCommand();
             comandoSelecionarItens.CommandText = sqlCarregasQuestoesTeste;
-
+			
             comandoSelecionarItens.Parameters.AddWithValue("TESTE_ID", teste.id);
-            comandoSelecionarItens.Parameters.AddWithValue("MATERIA_ID", teste.materia.id);
-            comandoSelecionarItens.Parameters.AddWithValue("DISCIPLINA_ID", teste.disciplina.id);
+           
 
             SqlDataReader leitorQuestao = comandoSelecionarItens.ExecuteReader();
 
@@ -246,7 +248,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
             conexaoComBanco.Close();
         }
 
-        private void RemoverQuestao(Questao questao, Teste teste)
+        private void RemoverQuestao(Teste teste)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
             conexaoComBanco.Open();
@@ -255,7 +257,7 @@ namespace GeradorDeTeste.Infra.Sql.ModuloTeste
             comandoInserir.CommandText = sqlRemoverQuestoes;
 
             comandoInserir.Parameters.AddWithValue("TESTE_ID", teste.id);
-            comandoInserir.Parameters.AddWithValue("QUESTAO_ID", questao.id);
+            
 
             comandoInserir.ExecuteNonQuery();
 

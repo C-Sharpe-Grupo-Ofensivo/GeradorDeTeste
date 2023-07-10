@@ -109,6 +109,7 @@
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 8;
             txtId.Text = "0";
+            txtId.TextChanged += txtId_TextChanged;
             // 
             // txtNome
             // 

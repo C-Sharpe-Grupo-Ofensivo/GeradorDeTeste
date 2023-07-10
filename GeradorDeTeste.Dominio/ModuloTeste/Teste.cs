@@ -31,6 +31,7 @@ namespace GeradorDeTestes.Dominio.ModuloTeste
 
         public override void AtualizarInformacoes(Teste registroAtualizado)
         {
+            this.id = registroAtualizado.id;
             this.nome = registroAtualizado.nome;
             this.materia = registroAtualizado.materia;
        
@@ -42,6 +43,11 @@ namespace GeradorDeTestes.Dominio.ModuloTeste
         {
             if (questoes.Contains(questao) == false)
                 questoes.Add(questao);
+        }
+
+        public override string ToString()
+        {
+            return $"{nome} {id}";
         }
 
         public override string[] Validar()
@@ -56,6 +62,14 @@ namespace GeradorDeTestes.Dominio.ModuloTeste
             if (materia == null)
                 erros.Add("O campo 'Materia' é obrigatório");
             return erros.ToArray();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Teste teste &&
+                   id == teste.id &&
+                   nome == teste.nome;
+
         }
     }
 }

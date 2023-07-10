@@ -13,7 +13,7 @@ namespace GeradorDeTeste.Infra.Sql.Compartilhado
        where TMapeador : MapeadorBase<TEntidade>, new()
     {
         protected const string enderecoBanco =
-           @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=GeradorDeTestes;Integrated Security=False";
+           @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=GeradorDeTeste;Integrated Security=False";
 
         protected abstract string sqlInserir { get; }
         protected abstract string sqlEditar { get; }
