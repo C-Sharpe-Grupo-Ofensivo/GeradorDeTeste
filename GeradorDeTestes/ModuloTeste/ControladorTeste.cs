@@ -35,6 +35,7 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
         public override string ToolTipExcluir => "Excluir Teste";
 
         public override bool EditarHabilitado => false;
+        
         public override void Editar()
         {
             throw new NotImplementedException();
@@ -103,6 +104,8 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
             CarregarTeste();
         }
 
+   
+
         public override UserControl ObterListagem()
         {
             if(tabelaTeste == null)
@@ -141,11 +144,27 @@ namespace GeradorDeTestes.WinApp.ModuloTeste
         //        return;
         //    }
 
-        //    TelaDetalhesForm telaDetalhes = new TelaDetalhesForm(this);
+        //    TelaListaTeste telaDetalhes = new TelaListaTestethis);
         //    telaDetalhes.Text = "Exibir detalhes do teste";
 
         //    telaDetalhes.ConfigurarTelaDetalhes(testeSelecionado);
         //    telaDetalhes.ShowDialog();
         //}
+
+        public override void PDF()
+        {
+            Teste testeSelecionado = ObterTesteSelecionado();
+
+            if (testeSelecionado == null)
+            {
+                MessageBox.Show("Selecione um teste primeiro!", "Gerar PDF do teste", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            TelaPDFForm telaEscolha = new TelaPDFForm(testeSelecionado, repositorioQuestao);
+            telaEscolha.Text = $"PDF do {testeSelecionado.nome}";
+
+            telaEscolha.ShowDialog();
+        }
     }
 }

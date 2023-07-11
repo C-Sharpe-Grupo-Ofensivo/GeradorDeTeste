@@ -133,5 +133,10 @@ namespace GeradorDeTestes
             controlador = new ControladorTeste(repositorioTeste, repositorioDisciplina, repositorioQuestao, repositorioMateria);
             ConfigurarTelaPrincipal(controlador);
         }
+
+        private void relatóriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador.PDF();
+        }
     }
 }
